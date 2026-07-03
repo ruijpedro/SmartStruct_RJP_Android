@@ -1,14 +1,21 @@
-name: Android CI
+name: Build SmartStruct Android APK
 
 on:
   workflow_dispatch:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  build-android:
     runs-on: ubuntu-latest
+    timeout-minutes: 35
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup JDK
         uses: actions/setup-java@v4
@@ -19,13 +26,21 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
+      - name: Reset Gradle
+        run: |
+          chmod +x gradlew || true
+          rm -rf ~/.gradle/caches/modules-2/files-2.1
+
       - name: Build Debug APK
         run: |
-          gradle build
-          gradle assembleDebug
+          if [ -f ./gradlew ]; then
+            ./gradlew clean assembleDebug --no-daemon --stacktrace
+          else
+            gradle clean assembleDebug --no-daemon --stacktrace
+          fi
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug
+          name: SmartStruct_RJP_V3_debug_apk
           path: app/build/outputs/apk/debug/*.apk
