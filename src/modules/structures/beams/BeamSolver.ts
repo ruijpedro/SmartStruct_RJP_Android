@@ -1,1 +1,2 @@
-export function solveSimpleBeam({L,q}:{L:number;q:number}){const RA=q*L/2; const RB=RA; const Mmax=q*L*L/8; const Vmax=q*L/2; return {RA,RB,Mmax,Vmax};}
+import type {BeamInput,BeamResult} from './BeamTypes';
+export function solveBeamSolver(input:BeamInput):BeamResult{const l=input.length||1; const q=input.load||0; return {ok:true,checks:['Cálculo preliminar'],values:{l,q,principal:q*l*l/8}};}
