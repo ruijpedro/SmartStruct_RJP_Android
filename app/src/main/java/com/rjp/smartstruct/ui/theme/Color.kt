@@ -2,5 +2,7 @@ package com.rjp.smartstruct.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val BlueCype = Color(0xFF1E88E5)   // Azul tipo CYPE
-val GrayBG = Color(0xFFF3F5F7)     // Fundo neutro
+val SmartBlue = Color(0xFF0B3D5C)
+val SmartCyan = Color(0xFF1976D2)
+val SmartBg = Color(0xFFF3F6F8)
+val SmartOk = Color(0xFF1B5E20)

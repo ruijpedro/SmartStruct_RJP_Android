@@ -1,27 +1,43 @@
-# 📱 SmartStruct_RJP — Android App
+# SmartStruct_RJP V7 Profissional
 
-Aplicação Android para **cálculo estrutural de vigas, pilares e lajes** segundo o **Eurocódigo 2**, com base nas boas práticas da engenharia civil e desenvolvida por **RJP Engenharia**.
+Aplicação Android/Web de apoio ao cálculo estrutural e geotécnico, em português de Portugal, preparada para evoluir como ferramenta académica/profissional RJP.
 
----
+## V7 — evolução gráfica e combinações
 
-## ⚙️ Funcionalidades
+Inclui tudo da V6 e acrescenta:
 
-✅ Cálculo completo de **vigas biapoiadas e em consola**  
-✅ Suporte para **cargas pontuais, distribuídas e momentos aplicados**  
-✅ Determinação automática de **reações (RA, RB, Menc)**  
-✅ Cálculo de **V(x)** e **M(x)** com valores máximos e mínimos  
-✅ Visualização gráfica académica dos diagramas de esforço e momento  
-✅ Interface moderna em **Jetpack Compose (Material 3)**  
-✅ Tema visual personalizado “SmartTheme” (estilo técnico CYPE)  
-✅ Aviso legal / Disclaimer RJP Engenharia incluído  
+- **Combinações EC0/EC1**:
+  - ELU fundamental;
+  - ELS rara;
+  - ELS frequente;
+  - ELS quase permanente;
+  - identificação automática do caso condicionante.
 
----
+- **Novo separador Gráficos**:
+  - esquema de viga biapoiada;
+  - cargas distribuídas;
+  - reações;
+  - diagramas VEd/MEd representados graficamente;
+  - deformada/flecha;
+  - secção de pilar com armadura longitudinal e estribos;
+  - planta de laje com armaduras principais/secundárias;
+  - sapata com distribuição de tensões no solo;
+  - muro de suporte com terreno, impulso triangular e resultante ativa.
 
-## 🧠 Base técnica
-- **Eurocódigo 2 (EN 1992-1-1)** — dimensionamento estrutural em betão armado  
-- **Eurocódigo 0 (EN 1990)** — combinações de ações e princípios gerais  
-- **Jetpack Compose + Kotlin** — interface moderna, fluida e 100% declarativa  
+## Módulos existentes
 
----
+- Vigas EC2;
+- Pilares EC2;
+- Lajes EC2;
+- Fundações/Sapatas EC2-EC7;
+- Muros de suporte EC7/EC2;
+- Combinações de cargas;
+- Gráficos/desenhos técnicos.
 
-## 🧩 Estrutura do projeto
+## Nota de utilização
+
+Ferramenta académica/de apoio. Os resultados devem ser verificados antes de qualquer utilização profissional.
+
+## Build Android
+
+O workflow `.github/workflows/android.yml` está incluído para gerar APK no GitHub Actions.
