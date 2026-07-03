@@ -1,0 +1,2 @@
+import { modules } from '../../core/constants/modules';
+export function DashboardPage({onOpen}:{onOpen:(id:string)=>void}){return <><section className="grid">{modules.filter(m=>m.id!=='dashboard').map(m=><article className="card" key={m.id} onClick={()=>onOpen(m.id)}><h3>{m.icon} {m.label}</h3><p className="muted">{m.description}</p></article>)}</section><section className="card"><strong>Nota de utilização</strong><p className="muted">Ferramenta não comercial para apoio académico e técnico. Validar sempre os resultados.</p></section></>}

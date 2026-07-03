@@ -1,0 +1,2 @@
+import type { ModuleInfo } from '../../core/constants/modules';
+export function PlaceholderModule({module}:{module?:ModuleInfo}){return <section className="workspace"><div className="panel"><h2>{module?.icon} {module?.label}</h2><p className="muted">{module?.description}</p><div className="svgbox">Módulo preparado para implementação funcional.</div></div><aside className="panel"><h3>Estado</h3><p className="status warn">● Base estrutural criada</p><p className="muted">Próximo passo: cálculo, desenho técnico e relatório.</p></aside></section>}

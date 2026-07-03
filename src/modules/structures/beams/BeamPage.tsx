@@ -1,0 +1,4 @@
+import { useState } from 'react';
+import { solveSimpleBeam } from './BeamSolver';
+import { BeamDiagram } from './BeamDiagram';
+export function BeamPage(){const [L,setL]=useState(5);const [q,setQ]=useState(10);const r=solveSimpleBeam({L,q});return <section className="workspace"><div className="panel"><h2>📐 Vigas</h2><label>Comprimento L (m)<input type="number" value={L} onChange={e=>setL(+e.target.value)} /></label><br/><label>Carga q (kN/m)<input type="number" value={q} onChange={e=>setQ(+e.target.value)} /></label><BeamDiagram L={L} q={q}/></div><aside className="panel"><h3>Resultados preliminares</h3><p>RA = {r.RA.toFixed(2)} kN</p><p>RB = {r.RB.toFixed(2)} kN</p><p>MEd,max = {r.Mmax.toFixed(2)} kNm</p><p>VEd,max = {r.Vmax.toFixed(2)} kN</p><p className="muted">Base de estudo: viga biapoiada com carga uniforme.</p></aside></section>}
