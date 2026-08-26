@@ -1,78 +1,51 @@
-import { modules } from '../../core/constants/modules';
+import { ChevronRight } from 'lucide-react';
+import { ModuleIcon } from '../../ui/components/ModuleIcon';
 
-type DashboardProps={onOpen:(id:string)=>void};
+type OpenFn = (id: string) => void;
 
-type QuickItem={id:string;label:string;code:string;symbol:string;tone:string};
-type CategoryItem={id:string;title:string;subtitle:string;symbol:string;tone:string};
-
-const quick:QuickItem[]=[
-  {id:'beams',label:'Vigas',code:'EC2',symbol:'━',tone:'blue'},
-  {id:'columns',label:'Pilares',code:'EC2',symbol:'▮',tone:'green'},
-  {id:'slabs',label:'Lajes',code:'EC2',symbol:'▦',tone:'orange'},
-  {id:'footings',label:'Fundações',code:'EC7',symbol:'▰',tone:'violet'},
-  {id:'walls',label:'Muros',code:'EC7',symbol:'▥',tone:'teal'},
-  {id:'combinations',label:'Combinações',code:'EC1',symbol:'⌁',tone:'red'},
-  {id:'diagrams',label:'Gráficos',code:'Técnicos',symbol:'▥',tone:'amber'},
+type Quick = { id: string; label: string; code: string; tone: string };
+const quick: Quick[] = [
+  { id: 'beams', label: 'Vigas', code: 'EC2', tone: 'blue' },
+  { id: 'columns', label: 'Pilares', code: 'EC2', tone: 'green' },
+  { id: 'slabs', label: 'Lajes', code: 'EC2', tone: 'orange' },
+  { id: 'footings', label: 'Fundações', code: 'EC7', tone: 'violet' },
+  { id: 'walls', label: 'Muros', code: 'EC7', tone: 'cyan' },
+  { id: 'combinations', label: 'Combinações', code: 'EC1', tone: 'red' },
+  { id: 'diagrams', label: 'Gráficos', code: 'Técnicos', tone: 'amber' },
 ];
 
-const categories:CategoryItem[]=[
-  {id:'beams',title:'Análise Estrutural',subtitle:'Vigas, pórticos, treliças, apoios, cargas e diagramas',symbol:'━',tone:'blue'},
-  {id:'columns',title:'Betão Armado',subtitle:'Vigas, pilares, lajes, sapatas e verificações EC2',symbol:'▮',tone:'green'},
-  {id:'soils',title:'Geotecnia',subtitle:'Solos, ensaios, capacidade de carga e assentamentos',symbol:'◒',tone:'violet'},
-  {id:'walls',title:'Contenção',subtitle:'Muros, ancoragens, pregagens, betão projetado e drenagem',symbol:'▥',tone:'teal'},
-  {id:'slopes',title:'Taludes',subtitle:'Estabilidade, reforço, drenagem e proteção',symbol:'◢',tone:'orange'},
-  {id:'hydraulics',title:'Hidráulica & Drenagem',subtitle:'Canais, valetas, coletores, bueiros e passagens',symbol:'≈',tone:'blue'},
-  {id:'library',title:'Biblioteca Técnica',subtitle:'Materiais, perfis, solos, fórmulas, tabelas e normas',symbol:'▤',tone:'amber'},
-  {id:'settings',title:'Ferramentas',subtitle:'Conversões, calculadoras rápidas e utilitários',symbol:'⚙',tone:'blue'},
+type Area = { id: string; title: string; subtitle: string; target: string; tone: string };
+const areas: Area[] = [
+  { id: 'analysis', title: 'Análise Estrutural', subtitle: 'Vigas, pórticos, treliças, apoios, cargas e diagramas', target: 'beams', tone: 'blue' },
+  { id: 'concrete', title: 'Betão Armado', subtitle: 'Vigas, pilares, lajes, sapatas e verificações EC2', target: 'columns', tone: 'green' },
+  { id: 'geotechnics', title: 'Geotecnia', subtitle: 'Solos, ensaios, capacidade de carga e assentamentos', target: 'soils', tone: 'violet' },
+  { id: 'containment', title: 'Contenção', subtitle: 'Muros, ancoragens, pregagens, betão projetado e drenagem', target: 'walls', tone: 'cyan' },
+  { id: 'slopes', title: 'Taludes', subtitle: 'Estabilidade, reforço, drenagem e proteção', target: 'slopes', tone: 'orange' },
+  { id: 'hydraulics', title: 'Hidráulica & Drenagem', subtitle: 'Canais, valetas, coletores, bueiros e passagens', target: 'drainage', tone: 'blue' },
+  { id: 'library', title: 'Biblioteca Técnica', subtitle: 'Materiais, perfis, solos, fórmulas, tabelas e normas', target: 'library', tone: 'amber' },
+  { id: 'tools', title: 'Ferramentas', subtitle: 'Conversões, calculadoras rápidas e utilitários', target: 'settings', tone: 'slate' },
 ];
 
-const recent=[
-  {title:'Viga contínua',meta:'Análise estrutural',id:'beams'},
-  {title:'Pilar EC2',meta:'Betão armado',id:'columns'},
-  {title:'Muro de suporte',meta:'Contenção EC7',id:'walls'},
-  {title:'Sapata isolada',meta:'Fundação EC7',id:'footings'},
-];
-
-export function DashboardPage({onOpen}:DashboardProps){
-  return <div className="dashboard-v25">
-    <section className="dashboard-hero">
-      <div>
-        <div className="hero-brand-line"><span className="hero-logo">S</span><h1>SmartStruct_RJP</h1></div>
-        <div className="hero-meta"><span className="version-pill">V25</span><span>EC2 / EC7 · EC1 · Gráficos técnicos</span></div>
-      </div>
-      <div className="hero-actions" aria-label="Ações rápidas">
-        <button title="Projetos" onClick={()=>onOpen('projects')}>▣</button>
-        <button title="Biblioteca" onClick={()=>onOpen('library')}>▤</button>
-        <button title="Configurações" onClick={()=>onOpen('settings')}>⚙</button>
-      </div>
-    </section>
-
-    <section className="quick-strip" aria-label="Módulos rápidos">
-      {quick.map(item=><button key={item.id} className={`quick-module tone-${item.tone}`} onClick={()=>onOpen(item.id)}>
-        <span className="quick-symbol">{item.symbol}</span>
-        <strong>{item.label}</strong>
-        <small>{item.code}</small>
-        <span className="quick-accent"/>
-      </button>)}
-    </section>
-
-    <section className="dashboard-section">
-      <div className="section-title"><span>▦</span><strong>Módulos principais</strong></div>
-      <div className="category-grid">
-        {categories.map(item=><button key={item.title} className={`category-card tone-${item.tone}`} onClick={()=>onOpen(item.id)}>
-          <span className="category-icon">{item.symbol}</span>
-          <span className="category-copy"><strong>{item.title}</strong><small>{item.subtitle}</small></span>
-          <span className="category-arrow">›</span>
+export function DashboardPage({onOpen}:{onOpen:OpenFn}){
+  return <div className="dashboard-v26">
+    <section className="quick-panel" aria-label="Acessos rápidos">
+      <div className="quick-grid">
+        {quick.map(item => <button className={`quick-card tone-${item.tone}`} key={item.id} onClick={()=>onOpen(item.id)}>
+          <span className="quick-icon"><ModuleIcon id={item.id} size={34}/></span>
+          <span className="quick-label">{item.label}</span>
+          <span className="quick-code">{item.code}</span>
+          <span className="quick-line" />
         </button>)}
       </div>
     </section>
 
-    <section className="dashboard-section recent-section">
-      <div className="section-title recent-title"><span>◷</span><strong>Projetos recentes</strong><button onClick={()=>onOpen('projects')}>Ver todos ›</button></div>
-      <div className="recent-grid">
-        {recent.map((item,index)=><button key={item.title} className="recent-card" onClick={()=>onOpen(item.id)}>
-          <span className={`recent-icon tone-${['blue','green','teal','violet'][index]}`}>{['⌁','▮','▥','▰'][index]}</span>
-          <span><strong>{item.title}</strong><small>{item.meta}</small></span>
+    <section className="modules-panel">
+      <div className="section-heading"><span className="section-mark"><ModuleIcon id="dashboard" size={18}/></span><strong>Módulos principais</strong></div>
+      <div className="area-grid">
+        {areas.map(area => <button className="area-card" key={area.id} onClick={()=>onOpen(area.target)}>
+          <span className={`area-icon tone-${area.tone}`}><ModuleIcon id={area.id} size={34}/></span>
+          <span className="area-copy"><strong>{area.title}</strong><small>{area.subtitle}</small></span>
+          <span className="area-arrow"><ChevronRight size={18}/></span>
         </button>)}
       </div>
     </section>
