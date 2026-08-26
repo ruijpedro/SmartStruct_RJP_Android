@@ -1,1 +1,2 @@
-export function Topbar({title}:{title:string}){return <header className="topbar"><strong>{title}</strong><div><button>Guardar</button> <button>PDF</button></div></header>}
+import { Bookmark, Cloud, HelpCircle, Search, UserRound } from 'lucide-react';
+export function Topbar({title}:{title:string}){return <header className="topbar topbar-v26"><div className="top-title">{title}</div><div className="top-actions"><button aria-label="Pesquisar"><Search size={18}/></button><button aria-label="Favoritos"><Bookmark size={18}/></button><button aria-label="Cloud"><Cloud size={18}/></button><button aria-label="Ajuda"><HelpCircle size={18}/></button><button className="avatar" aria-label="Perfil"><UserRound size={19}/></button></div></header>}

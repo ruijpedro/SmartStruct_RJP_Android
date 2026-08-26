@@ -1,3 +1,4 @@
+import { BookOpen, Folder, Home, Plus, Settings } from 'lucide-react';
 import { useState } from 'react';
 import { Sidebar } from '../ui/layout/Sidebar';
 import { Topbar } from '../ui/layout/Topbar';
@@ -12,17 +13,15 @@ export function App(){
   return <div className="app">
     <Sidebar active={active} onSelect={setActive}/>
     <main>
-      {active!=='dashboard' && <Topbar title={current?.label||'SmartStruct_RJP'}/>} 
-      <div className={active==='dashboard'?'content dashboard-content':'content'}>
-        {active==='dashboard'?<DashboardPage onOpen={setActive}/>:active==='beams'?<BeamPage/>:<PlaceholderModule module={current}/>} 
-      </div>
-      <nav className="mobile-bottom-nav" aria-label="Navegação principal">
-        <button className={active==='dashboard'?'active':''} onClick={()=>setActive('dashboard')}><span>⌂</span><small>Início</small></button>
-        <button className={active==='projects'?'active':''} onClick={()=>setActive('projects')}><span>▣</span><small>Projetos</small></button>
-        <button className="mobile-add" onClick={()=>setActive('beams')}><span>＋</span></button>
-        <button className={active==='library'?'active':''} onClick={()=>setActive('library')}><span>▤</span><small>Biblioteca</small></button>
-        <button className={active==='settings'?'active':''} onClick={()=>setActive('settings')}><span>⚙</span><small>Definições</small></button>
-      </nav>
+      <Topbar title={active==='dashboard'?'Dashboard':current?.label||'SmartStruct_RJP'}/>
+      <div className="content">{active==='dashboard'?<DashboardPage onOpen={setActive}/>:active==='beams'?<BeamPage/>:<PlaceholderModule module={current}/>}</div>
     </main>
+    <nav className="mobile-dock" aria-label="Navegação móvel">
+      <button className={active==='dashboard'?'active':''} onClick={()=>setActive('dashboard')}><Home size={20}/><span>Início</span></button>
+      <button className={active==='projects'?'active':''} onClick={()=>setActive('projects')}><Folder size={20}/><span>Projetos</span></button>
+      <button className="dock-plus" onClick={()=>setActive('beams')} aria-label="Novo cálculo"><Plus size={26}/></button>
+      <button className={active==='library'?'active':''} onClick={()=>setActive('library')}><BookOpen size={20}/><span>Biblioteca</span></button>
+      <button className={active==='settings'?'active':''} onClick={()=>setActive('settings')}><Settings size={20}/><span>Config.</span></button>
+    </nav>
   </div>
 }

@@ -1,0 +1,56 @@
+import {
+  Activity,
+  Anchor,
+  BarChart3,
+  BookOpen,
+  Boxes,
+  Building2,
+  Calculator,
+  Columns3,
+  Droplets,
+  Gauge,
+  Hammer,
+  Home,
+  Layers3,
+  Mountain,
+  PanelTop,
+  Ruler,
+  Settings,
+  Sigma,
+  SlidersHorizontal,
+  SquareStack,
+  Waves,
+  Wrench,
+} from 'lucide-react';
+
+const icons: Record<string, typeof Home> = {
+  dashboard: Home,
+  projects: Boxes,
+  beams: Ruler,
+  columns: Columns3,
+  slabs: Layers3,
+  footings: SquareStack,
+  walls: PanelTop,
+  combinations: Sigma,
+  diagrams: BarChart3,
+  soils: Mountain,
+  slopes: Activity,
+  soilnails: Hammer,
+  anchors: Anchor,
+  shotcrete: Building2,
+  drainage: Droplets,
+  rockfill: Mountain,
+  library: BookOpen,
+  hydraulics: Waves,
+  tools: Calculator,
+  settings: Settings,
+  analysis: Gauge,
+  concrete: Building2,
+  containment: SlidersHorizontal,
+  geotechnics: Mountain,
+};
+
+export function ModuleIcon({ id, size = 20 }: { id: string; size?: number }) {
+  const Icon = icons[id] ?? Wrench;
+  return <Icon size={size} strokeWidth={1.9} aria-hidden="true" />;
+}
