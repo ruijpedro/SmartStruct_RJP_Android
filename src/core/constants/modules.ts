@@ -7,6 +7,8 @@ export const modules:ModuleInfo[]=[
 {id:'beams',label:'Vigas',group:'Análise Estrutural',icon:'━',description:'Vigas isostáticas e hiperestáticas.'},
 {id:'frames',label:'Pórticos',group:'Análise Estrutural',icon:'Π',description:'Modelação e análise de pórticos 2D.'},
 {id:'trusses',label:'Treliças',group:'Análise Estrutural',icon:'△',description:'Treliças planas e esforços axiais.'},
+{id:'combinations',label:'Combinações',group:'Análise Estrutural',icon:'⌁',description:'Combinações de ações EC0/EC1.'},
+{id:'diagrams',label:'Gráficos técnicos',group:'Análise Estrutural',icon:'▥',description:'Diagramas de esforços e deformadas.'},
 {id:'columns',label:'Pilares',group:'Betão Armado',icon:'▮',description:'Pilares e flexocompressão EC2.'},
 {id:'slabs',label:'Lajes',group:'Betão Armado',icon:'▦',description:'Lajes uni e bidirecionais.'},
 
